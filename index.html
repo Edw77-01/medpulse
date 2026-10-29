@@ -3,16 +3,19 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
-  <title>MedPulse • Plataforma de Estudio Médico</title>
-  <meta name="description" content="Plataforma interactiva de estudio para estudiantes de medicina: cuestionarios, casos clínicos, progreso y tutor con inteligencia artificial."/>
+  <title>MedPulse • Plataforma de Educación Médica Continua</title>
+  <meta name="description" content="Plataforma académica y clínica de alta fidelidad para estudiantes de medicina. Casos clínicos, banco interactivo, puntos débiles y tutor asistido por IA."/>
   
-  <!-- Tipografías de Google y Material Symbols -->
+  <!-- Tipografías Oficiales e Iconografía Médica -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-  <!-- Tailwind CSS CDN con configuración oficial de Google Stitch -->
+  <!-- Hoja de Estilos de Grado Médico -->
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Tailwind CSS CDN para maquetación ágil -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -23,169 +26,142 @@
             "primary": "#006194",
             "on-primary": "#ffffff",
             "primary-container": "#007bb9",
-            "on-primary-container": "#fdfcff",
-            "primary-fixed": "#cce5ff",
-            "on-primary-fixed": "#001d31",
-            "primary-fixed-dim": "#93ccff",
-            "secondary": "#565e74",
-            "on-secondary": "#ffffff",
-            "secondary-container": "#dae2fd",
-            "on-secondary-container": "#5c647a",
-            "secondary-fixed": "#dae2fd",
-            "tertiary": "#006948",
-            "on-tertiary": "#ffffff",
-            "tertiary-container": "#00855d",
-            "on-tertiary-container": "#f5fff7",
-            "tertiary-fixed": "#85f8c4",
-            "on-tertiary-fixed": "#002114",
-            "on-tertiary-fixed-variant": "#005137",
-            "error": "#ba1a1a",
-            "on-error": "#ffffff",
-            "error-container": "#ffdad6",
-            "on-error-container": "#93000a",
-            "surface": "#f8f9ff",
-            "on-surface": "#0b1c30",
-            "on-surface-variant": "#3f4850",
-            "surface-dim": "#cbdbf5",
-            "surface-bright": "#f8f9ff",
+            "primary-fixed": "#e0f2fe",
+            "on-primary-fixed": "#03456b",
+            "secondary": "#475569",
+            "surface": "#f8fafc",
             "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#eff4ff",
-            "surface-container": "#e5eeff",
-            "surface-container-high": "#dce9ff",
-            "surface-container-highest": "#d3e4fe",
-            "outline": "#707881",
-            "outline-variant": "#bfc7d2"
+            "surface-container-low": "#f1f5f9",
+            "surface-container": "#e2e8f0",
+            "surface-container-high": "#cbd5e1",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#334155",
+            "tertiary": "#059669",
+            "tertiary-fixed": "#d1fae5",
+            "on-tertiary-fixed": "#064e3b",
+            "error": "#dc2626",
+            "error-container": "#fee2e2",
+            "on-error-container": "#7f1d1d",
+            "outline": "#94a3b8",
+            "outline-variant": "#e2e8f0"
           },
           fontFamily: {
-            sans: ["Inter", "sans-serif"],
-            heading: ["Plus Jakarta Sans", "sans-serif"]
+            sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+            heading: ["Plus Jakarta Sans", "Inter", "sans-serif"]
           }
         }
       }
     };
   </script>
-  <style>
-    body {
-      -webkit-tap-highlight-color: transparent;
-    }
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    .material-symbols-fill {
-      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-  </style>
 </head>
 <body class="bg-surface font-sans text-on-surface antialiased min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed">
 
-  <!-- ==================== SIDEBAR ESCRITORIO (Google Stitch) ==================== -->
-  <aside class="hidden md:flex fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-r border-outline-variant/30">
+  <!-- ==================== SIDEBAR INSTITUCIONAL (ESCRITORIO) ==================== -->
+  <aside class="hidden md:flex fixed left-0 top-0 h-full w-72 bg-white z-50 flex-col justify-between border-r border-slate-200/80 shadow-[1px_0_4px_rgba(15,23,42,0.03)]">
     <div class="flex flex-col">
-      <!-- Logo y Título -->
-      <div class="h-16 px-6 flex items-center gap-3 bg-surface-container-low">
-        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
-          <span class="material-symbols-outlined text-[24px]">cardiology</span>
+      <!-- Encabezado Institucional -->
+      <div class="h-16 px-6 flex items-center gap-3 border-b border-slate-100">
+        <div class="w-9 h-9 rounded-lg bg-[#0b1c30] flex items-center justify-center text-white shadow-xs">
+          <span class="material-symbols-outlined text-[22px]">cardiology</span>
         </div>
         <div class="flex flex-col">
-          <span class="font-heading text-xl text-primary font-bold tracking-tight leading-none">MedPulse</span>
-          <span class="text-[11px] font-semibold text-secondary uppercase tracking-widest mt-0.5">Clinical Learning</span>
+          <span class="font-heading text-lg text-[#0b1c30] font-bold tracking-tight leading-none">MedPulse</span>
+          <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mt-0.5">Clinical Learning</span>
         </div>
       </div>
 
-      <!-- Tarjeta de Perfil Estudiante -->
-      <div class="px-4 py-3">
-        <div class="bg-surface-container-lowest rounded-xl p-3 flex items-center gap-3 shadow-xs border border-outline-variant/20">
+      <!-- Tarjeta del Médico Interno / Estudiante -->
+      <div class="p-3.5">
+        <div class="bg-slate-50 border border-slate-200/70 rounded-xl p-3 flex items-center gap-3">
           <div class="relative shrink-0">
-            <img alt="Perfil Dra. Rivas" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=256&q=80"/>
-            <span class="absolute bottom-0 right-0 w-3 h-3 bg-tertiary-container rounded-full ring-2 ring-surface-container-lowest"></span>
+            <img alt="Dra. Sofía Rivas" class="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow-xs" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=256&q=80"/>
+            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-white"></span>
           </div>
           <div class="flex flex-col min-w-0 flex-1">
             <div class="flex items-center justify-between gap-1">
-              <span class="text-sm font-bold text-on-surface truncate">Dra. Sofía Rivas</span>
-              <span class="text-[11px] font-bold bg-primary-fixed text-on-primary-fixed px-1.5 py-0.5 rounded-full shrink-0">🔥 14d</span>
+              <span class="text-xs font-bold text-slate-900 truncate">Dra. Sofía Rivas</span>
+              <span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-md shrink-0">🔥 14d</span>
             </div>
-            <span class="text-xs text-on-surface-variant truncate">Internado • 5to Año</span>
+            <span class="text-[11px] text-slate-500 truncate">Internado Rotatorio • 5to Año</span>
           </div>
         </div>
       </div>
 
-      <!-- Menú de Navegación Principal -->
-      <nav class="px-3 py-2 flex flex-col gap-1.5">
-        <a class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all bg-primary text-on-primary font-semibold shadow-xs" data-nav-target="dashboard" href="#dashboard">
-          <span class="material-symbols-outlined text-[20px]">analytics</span>
-          <span>Dashboard & Progreso</span>
+      <!-- Navegación Principal -->
+      <nav class="px-3 py-1 flex flex-col gap-1">
+        <a class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg transition-all text-xs font-semibold bg-primary text-white shadow-xs" data-nav-target="dashboard" href="#dashboard">
+          <span class="material-symbols-outlined text-[19px]">analytics</span>
+          <span>Dashboard & Rendimiento</span>
         </a>
-        <a class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium" data-nav-target="quiz" href="#quiz">
-          <span class="material-symbols-outlined text-[20px]">quiz</span>
+        <a class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-xs font-medium" data-nav-target="quiz" href="#quiz">
+          <span class="material-symbols-outlined text-[19px]">quiz</span>
           <span>Banco de Preguntas</span>
         </a>
-        <a class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium" data-nav-target="cases" href="#cases">
-          <span class="material-symbols-outlined text-[20px]">clinical_notes</span>
-          <span>Casos Clínicos</span>
+        <a class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-xs font-medium" data-nav-target="cases" href="#cases">
+          <span class="material-symbols-outlined text-[19px]">clinical_notes</span>
+          <span>Simulador de Casos</span>
         </a>
-        <a class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium" data-nav-target="review" href="#review">
-          <span class="material-symbols-outlined text-[20px]">history_edu</span>
-          <span>Repaso Personalizado</span>
+        <a class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-xs font-medium" data-nav-target="review" href="#review">
+          <span class="material-symbols-outlined text-[19px]">history_edu</span>
+          <span>Repaso & Puntos Débiles</span>
         </a>
-        <a class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium" data-nav-target="tutor" href="#tutor">
-          <span class="material-symbols-outlined text-[20px]">smart_toy</span>
-          <span>Tutor IA Médico</span>
+        <a class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all text-xs font-medium" data-nav-target="tutor" href="#tutor">
+          <span class="material-symbols-outlined text-[19px]">smart_toy</span>
+          <span>Tutor Clínico IA</span>
         </a>
       </nav>
     </div>
 
     <!-- Pie del Sidebar -->
-    <div class="p-4 border-t border-outline-variant/30 flex flex-col gap-2">
-      <div class="p-2.5 rounded-xl bg-tertiary-fixed/30 flex items-center gap-2.5 text-xs text-on-tertiary-fixed-variant">
-        <span class="material-symbols-outlined text-tertiary text-[20px]">school</span>
-        <span>Preparación oficial MIR / USMLE Step 2</span>
+    <div class="p-4 border-t border-slate-100 flex flex-col gap-2">
+      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/60 flex items-center gap-2.5 text-[11px] text-slate-600">
+        <span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+        <span>Alineado a baremos MIR y USMLE</span>
       </div>
-      <div class="flex items-center justify-between px-2 pt-1">
-        <span class="text-xs text-secondary font-medium">MedPulse v1.0 MVP</span>
-        <span class="text-xs text-tertiary font-bold flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Online
+      <div class="flex items-center justify-between px-1 text-[11px] text-slate-400">
+        <span>MedPulse v1.0 • Producción</span>
+        <span class="text-emerald-700 font-semibold flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-indicator"></span> Activo
         </span>
       </div>
     </div>
   </aside>
 
-  <!-- ==================== HEADER SUPERIOR ==================== -->
-  <header class="fixed top-0 left-0 md:left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 z-40 px-4 sm:px-6 flex items-center justify-between gap-4">
-    <!-- Logotipo móvil (visible solo en celulares) -->
+  <!-- ==================== HEADER SUPERIOR CLÍNICO ==================== -->
+  <header class="fixed top-0 left-0 md:left-72 right-0 h-16 bg-white/95 backdrop-blur-md border-b border-slate-200/80 z-40 px-4 sm:px-6 flex items-center justify-between gap-4">
+    <!-- Logotipo móvil -->
     <div class="flex items-center gap-2 md:hidden">
-      <div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold">
-        <span class="material-symbols-outlined text-[20px]">cardiology</span>
+      <div class="w-8 h-8 rounded-lg bg-[#0b1c30] text-white flex items-center justify-center font-bold">
+        <span class="material-symbols-outlined text-[18px]">cardiology</span>
       </div>
-      <span class="font-heading font-bold text-lg text-primary">MedPulse</span>
+      <span class="font-heading font-bold text-base text-slate-900">MedPulse</span>
     </div>
 
-    <!-- Barra de búsqueda rápida -->
+    <!-- Buscador de Términos Médicos -->
     <div class="hidden sm:flex flex-1 max-w-md">
       <div class="relative w-full flex items-center">
-        <span class="material-symbols-outlined absolute left-3 text-secondary text-[18px]">search</span>
-        <input class="w-full pl-9 pr-4 py-2 bg-surface-container-lowest text-on-surface text-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-primary border border-outline-variant/30 shadow-xs placeholder:text-outline" placeholder="Buscar patología, fármaco o guía clínica..." type="text"/>
+        <span class="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">search</span>
+        <input class="w-full pl-9 pr-3.5 py-1.5 bg-slate-50 hover:bg-slate-100/80 focus:bg-white text-slate-900 text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 border border-slate-200 transition-all placeholder:text-slate-400" placeholder="Buscar patología, fármaco, CIE-10 o guía clínica..." type="text"/>
       </div>
     </div>
 
-    <!-- Selector de Rotación y Usuario -->
+    <!-- Estado y Perfil -->
     <div class="flex items-center gap-3">
-      <div class="hidden lg:flex items-center gap-1.5 bg-surface-container-lowest px-3 py-1.5 rounded-xl border border-outline-variant/30 text-xs font-semibold text-on-surface shadow-xs">
-        <span class="material-symbols-outlined text-primary text-[16px]">stethoscope</span>
-        <span>Rotación: Medicina Interna</span>
+      <div class="hidden lg:flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-medium text-slate-700">
+        <span class="material-symbols-outlined text-primary text-[15px]">stethoscope</span>
+        <span>Servicio: Medicina Interna</span>
       </div>
 
-      <!-- Badge de Racha Móvil -->
-      <div class="flex md:hidden items-center gap-1 bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-full text-xs font-bold">
+      <div class="flex md:hidden items-center gap-1 bg-amber-50 border border-amber-200 text-amber-800 px-2 py-0.5 rounded-md text-[11px] font-bold">
         <span>🔥 14d</span>
       </div>
 
-      <!-- Foto de Perfil -->
-      <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20 shrink-0" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=256&q=80"/>
+      <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-1 ring-slate-200 shrink-0" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=256&q=80"/>
     </div>
   </header>
 
-  <!-- ==================== CONTENEDOR PRINCIPAL ==================== -->
-  <main class="w-full pl-0 md:pl-72 pt-16 pb-24 md:pb-8">
+  <!-- ==================== ESPACIO DE TRABAJO PRINCIPAL ==================== -->
+  <main class="w-full pl-0 md:pl-72 pt-16 pb-24 md:pb-10">
     <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
 
       <!-- ======================================================== -->
@@ -193,134 +169,134 @@
       <!-- ======================================================== -->
       <section id="view-dashboard" class="app-view flex flex-col gap-6">
         
-        <!-- Banner de Bienvenida y Momento de Estudio -->
-        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-container to-primary text-on-primary p-6 sm:p-8 shadow-md">
+        <!-- Banner Clínico de Bienvenida -->
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#0b1c30] via-[#132d4b] to-[#006194] text-white p-6 sm:p-7 shadow-sm border border-slate-800">
           <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="flex flex-col gap-2 max-w-2xl">
               <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-on-primary text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+                <span class="px-2 py-0.5 rounded-md bg-white/10 text-white text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs border border-white/10">
                   Rotación Hospitalaria • Internado
                 </span>
-                <span class="inline-flex items-center gap-1 text-xs text-tertiary-fixed font-bold">
-                  <span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                <span class="inline-flex items-center gap-1 text-[11px] text-emerald-300 font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                   Algoritmo de Retención Activo
                 </span>
               </div>
-              <h1 class="font-heading text-2xl sm:text-3xl font-bold text-on-primary tracking-tight">
-                ¡Buen día, Sofía! Estás a 18 días de tu rotación clínica.
+              <h1 class="font-heading text-xl sm:text-2xl font-bold text-white tracking-tight">
+                Dra. Sofía Rivas • Guardia y Rotación Hospitalaria
               </h1>
-              <p class="text-sm sm:text-base text-primary-fixed opacity-95 leading-relaxed">
-                Tu curva proyecta un 78% de asimilación general. Se detectó oportunidad de refuerzo en <strong class="text-white">Farmacología</strong> y <strong class="text-white">Cardiología</strong>.
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                Curva de asimilación global estimada en 78.4%. Se sugiere refuerzo enfocado en <strong>Farmacología Cardiovascular</strong> y <strong>Urgencias Neumológicas</strong>.
               </p>
             </div>
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-              <button class="px-5 py-3 rounded-xl bg-surface-container-lowest text-primary font-bold text-sm shadow-sm hover:bg-surface-container-low transition-all flex items-center justify-center gap-2" data-nav-target="quiz">
-                <span class="material-symbols-outlined text-[20px]">play_circle</span>
-                <span>Continuar Cuestionario</span>
+            <div class="shrink-0">
+              <button class="px-4 py-2.5 rounded-lg bg-white hover:bg-slate-100 text-[#0b1c30] font-semibold text-xs shadow-xs transition-all flex items-center justify-center gap-2" data-nav-target="quiz">
+                <span class="material-symbols-outlined text-[18px]">play_circle</span>
+                <span>Continuar Autoevaluación</span>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- 4 Tarjetas de Métricas Clave (KPIs) -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- KPI 1: Aciertos Global -->
-          <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-col justify-between gap-3">
+        <!-- 4 Tarjetas de Métricas Hospitalarias (KPIs) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <!-- KPI 1 -->
+          <div class="clinical-card p-4 sm:p-5 flex flex-col justify-between gap-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">% Aciertos Global</span>
-              <span class="p-1.5 rounded-lg bg-primary-fixed text-on-primary-fixed">
-                <span class="material-symbols-outlined text-[18px]">verified</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">% Aciertos Global</span>
+              <span class="p-1 rounded-md bg-blue-50 text-primary">
+                <span class="material-symbols-outlined text-[16px]">verified</span>
               </span>
             </div>
             <div>
-              <span id="dash-accuracy" class="font-heading text-2xl sm:text-3xl font-extrabold text-on-surface">78.4%</span>
-              <div class="flex items-center gap-1 text-xs text-tertiary font-bold mt-1">
-                <span class="material-symbols-outlined text-[16px]">trending_up</span>
+              <span id="dash-accuracy" class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 tabular-nums">78.4%</span>
+              <div class="flex items-center gap-1 text-[11px] text-emerald-700 font-semibold mt-1">
+                <span class="material-symbols-outlined text-[14px]">trending_up</span>
                 <span>+3.2% vs semana previa</span>
               </div>
             </div>
           </div>
 
-          <!-- KPI 2: Casos Resueltos -->
-          <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-col justify-between gap-3">
+          <!-- KPI 2 -->
+          <div class="clinical-card p-4 sm:p-5 flex flex-col justify-between gap-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Casos Clínicos</span>
-              <span class="p-1.5 rounded-lg bg-secondary-fixed text-on-secondary-fixed">
-                <span class="material-symbols-outlined text-[18px]">clinical_notes</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Casos Resueltos</span>
+              <span class="p-1 rounded-md bg-slate-100 text-slate-700">
+                <span class="material-symbols-outlined text-[16px]">clinical_notes</span>
               </span>
             </div>
             <div>
               <div class="flex items-baseline gap-1.5">
-                <span id="dash-cases" class="font-heading text-2xl sm:text-3xl font-extrabold text-on-surface">3</span>
-                <span class="text-xs font-medium text-secondary">/ 5 asignados</span>
+                <span id="dash-cases" class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 tabular-nums">3</span>
+                <span class="text-xs text-slate-500 font-medium">/ 5 prioritarios</span>
               </div>
-              <span class="text-xs text-secondary font-medium mt-1 block">Casos de alta fidelidad</span>
+              <span class="text-[11px] text-slate-500 mt-1 block">Alta fidelidad clínica</span>
             </div>
           </div>
 
-          <!-- KPI 3: Banco Respondido -->
-          <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-col justify-between gap-3">
+          <!-- KPI 3 -->
+          <div class="clinical-card p-4 sm:p-5 flex flex-col justify-between gap-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Preguntas Totales</span>
-              <span class="p-1.5 rounded-lg bg-surface-container-high text-primary">
-                <span class="material-symbols-outlined text-[18px]">quiz</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Preguntas Totales</span>
+              <span class="p-1 rounded-md bg-sky-50 text-sky-700">
+                <span class="material-symbols-outlined text-[16px]">quiz</span>
               </span>
             </div>
             <div>
-              <span id="dash-total-answered" class="font-heading text-2xl sm:text-3xl font-extrabold text-on-surface">24</span>
-              <div class="flex items-center gap-2 text-xs font-semibold mt-1">
-                <span id="dash-correct-count" class="text-tertiary">19 correctas</span>
+              <span id="dash-total-answered" class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 tabular-nums">24</span>
+              <div class="flex items-center gap-2 text-[11px] font-medium mt-1">
+                <span id="dash-correct-count" class="text-emerald-700 font-semibold">19 correctas</span>
                 <span>•</span>
-                <span id="dash-incorrect-count" class="text-error">5 a repasar</span>
+                <span id="dash-incorrect-count" class="text-rose-700 font-semibold">5 a repasar</span>
               </div>
             </div>
           </div>
 
-          <!-- KPI 4: Racha Activa -->
-          <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-col justify-between gap-3">
+          <!-- KPI 4 -->
+          <div class="clinical-card p-4 sm:p-5 flex flex-col justify-between gap-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Racha Activa</span>
-              <span class="p-1.5 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed">
-                <span class="material-symbols-outlined text-[18px]">local_fire_department</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Racha Activa</span>
+              <span class="p-1 rounded-md bg-amber-50 text-amber-700">
+                <span class="material-symbols-outlined text-[16px]">local_fire_department</span>
               </span>
             </div>
             <div>
               <div class="flex items-baseline gap-1.5">
-                <span id="dash-streak" class="font-heading text-2xl sm:text-3xl font-extrabold text-on-surface">14</span>
-                <span class="text-xs font-medium text-secondary">días continuos</span>
+                <span id="dash-streak" class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 tabular-nums">14</span>
+                <span class="text-xs text-slate-500 font-medium">días continuos</span>
               </div>
-              <span class="text-xs text-tertiary font-bold mt-1 block">Bonus de retención: +18%</span>
+              <span class="text-[11px] text-emerald-700 font-semibold mt-1 block">Retención proyectada: +18%</span>
             </div>
           </div>
         </div>
 
-        <!-- Secciones Dobles: Dominio por Especialidad + Historial -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- Columna Izquierda: Especialidades (7 cols) -->
-          <div class="lg:col-span-7 bg-surface-container-lowest rounded-2xl p-5 sm:p-6 shadow-xs border border-outline-variant/30 flex flex-col gap-4">
-            <div class="flex items-center justify-between">
+        <!-- Secciones Dobles: Especialidades e Historial -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          <!-- Columna Izquierda: Dominio Clínico (7 cols) -->
+          <div class="lg:col-span-7 clinical-card p-5 sm:p-6 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Evaluación Continua</span>
-                <h2 class="font-heading text-lg font-bold text-on-surface">Dominio por Especialidad Médica</h2>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Evaluación Continua</span>
+                <h2 class="font-heading text-base font-bold text-slate-900">Dominio por Especialidad Médica</h2>
               </div>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-surface-container text-secondary">Tiempo Real</span>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">Baremos Oficiales</span>
             </div>
-            <div id="dash-specialty-list" class="flex flex-col gap-3">
-              <!-- Renderizado dinámico desde app.js -->
+            <div id="dash-specialty-list" class="flex flex-col gap-2.5">
+              <!-- Renderizado dinámico -->
             </div>
           </div>
 
-          <!-- Columna Derecha: Historial Reciente de Intentos (5 cols) -->
-          <div class="lg:col-span-5 bg-surface-container-lowest rounded-2xl p-5 sm:p-6 shadow-xs border border-outline-variant/30 flex flex-col gap-4">
-            <div class="flex items-center justify-between">
+          <!-- Columna Derecha: Historial Clínico (5 cols) -->
+          <div class="lg:col-span-5 clinical-card p-5 sm:p-6 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Actividad</span>
-                <h2 class="font-heading text-lg font-bold text-on-surface">Historial de Intentos</h2>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Registro de Sesiones</span>
+                <h2 class="font-heading text-base font-bold text-slate-900">Historial de Intentos</h2>
               </div>
-              <span class="text-xs font-semibold text-primary">Últimas sesiones</span>
+              <span class="text-[10px] font-semibold text-primary">Recientes</span>
             </div>
-            <div id="dash-history-list" class="flex flex-col gap-2.5">
-              <!-- Renderizado dinámico desde app.js -->
+            <div id="dash-history-list" class="flex flex-col gap-2">
+              <!-- Renderizado dinámico -->
             </div>
           </div>
         </div>
@@ -330,80 +306,79 @@
       <!-- ======================================================== -->
       <!-- VISTA 2: BANCO DE PREGUNTAS INTERACTIVO (PRD #1)        -->
       <!-- ======================================================== -->
-      <section id="view-quiz" class="app-view hidden flex flex-col gap-6">
+      <section id="view-quiz" class="app-view hidden flex flex-col gap-5">
         
-        <!-- Barra Superior del Quiz -->
-        <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-col gap-3">
+        <!-- Barra de Control del Examen -->
+        <div class="clinical-card p-4 sm:p-5 flex flex-col gap-3">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-3">
-              <span class="p-2.5 bg-primary-fixed text-on-primary-fixed rounded-xl flex items-center justify-center">
-                <span class="material-symbols-outlined text-[22px]">medication</span>
+              <span class="p-2 bg-slate-100 text-slate-800 rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">medication</span>
               </span>
               <div class="flex flex-col">
                 <div class="flex items-center gap-2">
-                  <h2 class="font-heading text-lg sm:text-xl font-bold text-on-surface">Cuestionario Clínico</h2>
-                  <span id="quiz-question-counter" class="text-xs font-bold px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant">Pregunta 1 de 5</span>
+                  <h2 class="font-heading text-base sm:text-lg font-bold text-slate-900">Evaluación Formativa</h2>
+                  <span id="quiz-question-counter" class="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">Pregunta 1 de 5</span>
                 </div>
-                <span id="quiz-question-specialty" class="text-xs text-secondary font-medium">Farmacología • Antiarrítmicos</span>
+                <span id="quiz-question-specialty" class="text-[11px] text-slate-500 font-medium">Farmacología • Antiarrítmicos</span>
               </div>
             </div>
 
-            <!-- Modos y Botón Reiniciar -->
             <div class="flex items-center gap-2">
-              <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-tertiary-container text-on-tertiary-container text-xs font-bold">
-                <span class="material-symbols-outlined text-[16px]">bolt</span> Modo Tutor Activo
+              <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-bold">
+                <span class="material-symbols-outlined text-[15px]">bolt</span> Modo Tutor Activo
               </span>
-              <button id="quiz-restart-btn" class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold transition-all" type="button">
-                Reiniciar Sesión
+              <button id="quiz-restart-btn" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-all" type="button">
+                Reiniciar Cuestionario
               </button>
             </div>
           </div>
 
-          <!-- Barra Segmentada de Progreso -->
+          <!-- Barra de Progreso Segmentada -->
           <div id="quiz-progress-tracker" class="grid grid-cols-5 gap-1.5 w-full pt-1">
-            <!-- Segmentos renderizados dinámicamente -->
+            <!-- Segmentos dinámicos -->
           </div>
         </div>
 
-        <!-- Tarjeta de la Pregunta y Opciones -->
-        <div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-7 shadow-xs border border-outline-variant/30 flex flex-col gap-6">
-          <div class="flex flex-col gap-3">
-            <span class="text-xs font-bold text-primary uppercase tracking-widest">Viñeta Clínica</span>
-            <p id="quiz-vignette-text" class="text-base sm:text-lg text-on-surface font-medium leading-relaxed">
+        <!-- Tarjeta de Viñeta y Opciones -->
+        <div class="clinical-card p-5 sm:p-7 flex flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <span class="text-[10px] font-bold text-primary uppercase tracking-widest">Viñeta Clínica de Caso</span>
+            <p id="quiz-vignette-text" class="text-sm sm:text-base text-slate-900 font-medium leading-relaxed">
               Cargando viñeta clínica...
             </p>
           </div>
 
-          <!-- Opciones de Selección Múltiple -->
-          <div id="quiz-options-container" class="flex flex-col gap-3">
-            <!-- Renderizado dinámicamente -->
+          <!-- Opciones de Respuesta -->
+          <div id="quiz-options-container" class="flex flex-col gap-2.5">
+            <!-- Renderizado dinámico -->
           </div>
 
-          <!-- Panel de Explicación Inmediata (Oculto hasta responder) -->
-          <div id="quiz-explanation-box" class="hidden rounded-2xl p-5 bg-surface-container-low border border-outline-variant/40 flex flex-col gap-3 transition-all">
-            <div class="flex items-center justify-between">
-              <span id="quiz-exp-title" class="font-heading text-base font-bold text-tertiary">
-                ¡Respuesta Correcta!
+          <!-- Panel de Explicación y Perla de Examen -->
+          <div id="quiz-explanation-box" class="hidden rounded-xl p-5 bg-slate-50 border border-slate-200/80 flex flex-col gap-3 transition-all">
+            <div class="flex items-center justify-between border-b border-slate-200/60 pb-2">
+              <span id="quiz-exp-title" class="font-heading text-sm font-bold text-emerald-700">
+                Respuesta Correcta
               </span>
-              <span class="text-xs font-bold px-2 py-0.5 rounded-md bg-surface-container-high text-secondary">
-                Explicación Docente
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-600">
+                Fundamento Clínico
               </span>
             </div>
-            <p id="quiz-exp-text" class="text-sm text-on-surface leading-relaxed">
-              Explicación médica detallada...
+            <p id="quiz-exp-text" class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+              Explicación médica...
             </p>
-            <div class="p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/20 flex items-start gap-2.5 text-xs text-on-surface">
-              <span class="material-symbols-outlined text-primary text-[18px] shrink-0">tips_and_updates</span>
+            <div class="p-3 rounded-lg bg-white border border-slate-200 flex items-start gap-2.5 text-xs text-slate-800">
+              <span class="material-symbols-outlined text-amber-600 text-[18px] shrink-0">tips_and_updates</span>
               <div>
-                <strong class="font-bold text-primary block">Perla de Examen:</strong>
-                <span id="quiz-exp-pearl">Regla mnemotécnica o consejo clínico.</span>
+                <strong class="font-bold text-slate-900 block mb-0.5">Perla de Examen / High-Yield:</strong>
+                <span id="quiz-exp-pearl" class="text-slate-600">Consejo formativo.</span>
               </div>
             </div>
           </div>
 
-          <!-- Botón Siguiente Pregunta -->
+          <!-- Botón de Siguiente Pregunta -->
           <div class="flex justify-end pt-2">
-            <button id="quiz-next-btn" class="hidden px-6 py-3 rounded-xl bg-primary text-on-primary font-bold text-sm hover:bg-primary-container transition-all shadow-sm" type="button">
+            <button id="quiz-next-btn" class="hidden px-5 py-2.5 rounded-lg bg-primary hover:bg-[#00507a] text-white font-semibold text-xs shadow-xs transition-all" type="button">
               Siguiente Pregunta
             </button>
           </div>
@@ -414,48 +389,48 @@
       <!-- ======================================================== -->
       <!-- VISTA 3: SIMULADOR DE CASOS CLÍNICOS (PRD #2)           -->
       <!-- ======================================================== -->
-      <section id="view-cases" class="app-view hidden flex flex-col gap-6">
+      <section id="view-cases" class="app-view hidden flex flex-col gap-5">
         
-        <!-- Cabecera del Caso y Selector -->
-        <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-wrap items-center justify-between gap-4">
+        <!-- Cabecera del Simulador -->
+        <div class="clinical-card p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-3">
-            <span class="p-2.5 bg-secondary-fixed text-on-secondary-fixed rounded-xl flex items-center justify-center">
-              <span class="material-symbols-outlined text-[22px]">stethoscope</span>
+            <span class="p-2 bg-slate-100 text-slate-800 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">stethoscope</span>
             </span>
             <div class="flex flex-col">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Simulador de Emergencias</span>
-              <h2 id="case-title" class="font-heading text-lg sm:text-xl font-bold text-on-surface">Dolor precordial agudo</h2>
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Simulador Hospitalario</span>
+              <h2 id="case-title" class="font-heading text-base sm:text-lg font-bold text-slate-900">Dolor precordial agudo</h2>
             </div>
           </div>
           
           <div class="flex items-center gap-2">
-            <label for="case-select" class="text-xs font-bold text-secondary">Cambiar Caso:</label>
-            <select id="case-select" class="px-3 py-1.5 rounded-xl bg-surface-container text-xs font-semibold text-on-surface border border-outline-variant/30 focus:outline-none">
+            <label for="case-select" class="text-xs font-semibold text-slate-600">Caso:</label>
+            <select id="case-select" class="px-3 py-1.5 rounded-lg bg-slate-50 text-xs font-medium text-slate-800 border border-slate-200 focus:outline-none">
               <option value="0">Caso 1: Síndrome Coronario Agudo</option>
               <option value="1">Caso 2: Neumonía Comunitaria Grave</option>
             </select>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
           
-          <!-- Ficha del Paciente y Constantes Vitales (4 cols) -->
+          <!-- Ficha de Triage y Signos Vitales (4 cols) -->
           <div class="lg:col-span-4 flex flex-col gap-4">
             
-            <!-- Tarjeta Paciente -->
-            <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-xs border border-outline-variant/30 flex flex-col gap-3">
+            <!-- Ficha Admisión -->
+            <div class="clinical-card p-4 sm:p-5 flex flex-col gap-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider">Ficha de Admisión</span>
-                <span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-error-container text-on-error-container">Prioridad I</span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ficha de Admisión</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-200">Triage: Prioridad I</span>
               </div>
               <div>
-                <h3 id="case-patient-name" class="font-heading text-lg font-bold text-on-surface">Carlos Mendoza</h3>
-                <span id="case-patient-details" class="text-xs text-secondary font-medium">58 años • Masculino • Conductor</span>
+                <h3 id="case-patient-name" class="font-heading text-base font-bold text-slate-900">Carlos Mendoza</h3>
+                <span id="case-patient-details" class="text-xs text-slate-500 font-medium">58 años • Masculino • Conductor</span>
               </div>
 
-              <!-- Factores de riesgo -->
-              <div class="flex flex-col gap-1.5 pt-2 border-t border-outline-variant/20">
-                <span class="text-xs font-bold text-secondary">Antecedentes Médicos:</span>
+              <!-- Factores de Riesgo -->
+              <div class="flex flex-col gap-1.5 pt-2 border-t border-slate-100">
+                <span class="text-[11px] font-bold text-slate-600">Antecedentes Médicos:</span>
                 <div id="case-antecedents" class="flex flex-wrap gap-1.5">
                   <!-- Badges dinámicos -->
                 </div>
@@ -463,107 +438,106 @@
             </div>
 
             <!-- Constantes Vitales en Tiempo Real -->
-            <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-xs border border-outline-variant/30 flex flex-col gap-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-secondary uppercase tracking-wider flex items-center gap-1">
-                  <span class="material-symbols-outlined text-primary text-[18px]">monitor_heart</span> Monitor de Constantes
+            <div class="clinical-card p-4 sm:p-5 flex flex-col gap-3">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-primary text-[16px]">monitor_heart</span> Monitor Multiparamétrico
                 </span>
-                <span class="text-xs font-bold text-tertiary flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Activo
+                <span class="text-[10px] font-bold text-emerald-700 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-indicator"></span> En línea
                 </span>
               </div>
 
               <div class="grid grid-cols-2 gap-2">
-                <div class="p-3 rounded-xl bg-error-container/30 border border-error/20 flex flex-col">
-                  <span class="text-[11px] font-bold text-on-error-container">Presión Arterial</span>
-                  <span id="case-vital-bp" class="font-heading text-lg font-bold text-on-error-container mt-1">165/95</span>
-                  <span id="case-vital-bp-sub" class="text-[10px] text-secondary">mmHg</span>
+                <div class="vital-display-tile vital-alert">
+                  <span class="text-[10px] font-bold text-rose-800">Presión Arterial</span>
+                  <span id="case-vital-bp" class="vital-value text-base text-rose-900 mt-0.5 block">165/95</span>
+                  <span id="case-vital-bp-sub" class="text-[9px] text-slate-500">mmHg</span>
                 </div>
-                <div class="p-3 rounded-xl bg-error-container/30 border border-error/20 flex flex-col">
-                  <span class="text-[11px] font-bold text-on-error-container">Frecuencia Cardíaca</span>
-                  <span id="case-vital-hr" class="font-heading text-lg font-bold text-on-error-container mt-1">104</span>
-                  <span id="case-vital-hr-sub" class="text-[10px] text-secondary">lpm (Taquicardia)</span>
+                <div class="vital-display-tile vital-alert">
+                  <span class="text-[10px] font-bold text-rose-800">Frec. Cardíaca</span>
+                  <span id="case-vital-hr" class="vital-value text-base text-rose-900 mt-0.5 block">104</span>
+                  <span id="case-vital-hr-sub" class="text-[9px] text-slate-500">lpm (Taquicardia)</span>
                 </div>
-                <div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant/20 flex flex-col">
-                  <span class="text-[11px] font-bold text-secondary">Sat. O₂</span>
-                  <span id="case-vital-spo2" class="font-heading text-lg font-bold text-on-surface mt-1">93%</span>
-                  <span class="text-[10px] text-secondary">Aire ambiente</span>
+                <div class="vital-display-tile vital-normal">
+                  <span class="text-[10px] font-bold text-slate-600">Sat. O₂</span>
+                  <span id="case-vital-spo2" class="vital-value text-base text-slate-900 mt-0.5 block">93%</span>
+                  <span class="text-[9px] text-slate-500">Aire ambiente</span>
                 </div>
-                <div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant/20 flex flex-col">
-                  <span class="text-[11px] font-bold text-secondary">Frec. Respiratoria</span>
-                  <span id="case-vital-rr" class="font-heading text-lg font-bold text-on-surface mt-1">22</span>
-                  <span class="text-[10px] text-secondary">rpm</span>
+                <div class="vital-display-tile vital-normal">
+                  <span class="text-[10px] font-bold text-slate-600">Frec. Resp.</span>
+                  <span id="case-vital-rr" class="vital-value text-base text-slate-900 mt-0.5 block">22</span>
+                  <span class="text-[9px] text-slate-500">rpm</span>
                 </div>
               </div>
-              <div class="p-2.5 rounded-xl bg-surface-container-low text-xs flex items-center justify-between">
-                <span class="text-secondary font-medium">Temperatura axilar:</span>
-                <span id="case-vital-temp" class="font-bold text-on-surface">36.8 °C</span>
+              <div class="p-2 rounded bg-slate-50 border border-slate-200 text-xs flex items-center justify-between">
+                <span class="text-slate-500 text-[11px]">Temperatura:</span>
+                <span id="case-vital-temp" class="font-bold text-slate-800 tabular-nums">36.8 °C</span>
               </div>
             </div>
 
           </div>
 
-          <!-- Pestañas Interactivas de Exploración y Decisiones (8 cols) -->
-          <div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-5 sm:p-6 shadow-xs border border-outline-variant/30 flex flex-col gap-5">
+          <!-- Pestañas Clínicas de Exploración y Decisiones (8 cols) -->
+          <div class="lg:col-span-8 clinical-card p-5 sm:p-6 flex flex-col gap-4">
             
-            <!-- Barra de Pestañas -->
-            <div class="flex items-center gap-2 border-b border-outline-variant/30 pb-2">
-              <button class="case-tab-btn px-4 py-2 text-sm font-bold border-b-2 border-primary text-primary transition-all" data-case-tab="anamnesis" type="button">
+            <!-- Pestañas Superiores -->
+            <div class="flex items-center gap-1 border-b border-slate-200 pb-1">
+              <button class="case-tab-btn tab-active" data-case-tab="anamnesis" type="button">
                 1. Anamnesis y Exploración
               </button>
-              <button class="case-tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-secondary hover:text-on-surface transition-all" data-case-tab="labs" type="button">
+              <button class="case-tab-btn" data-case-tab="labs" type="button">
                 2. Laboratorios y Pruebas
               </button>
-              <button class="case-tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-secondary hover:text-on-surface transition-all" data-case-tab="decisions" type="button">
-                3. Toma de Decisiones Clínicas
+              <button class="case-tab-btn" data-case-tab="decisions" type="button">
+                3. Toma de Decisiones
               </button>
             </div>
 
-            <!-- Pestaña 1: Anamnesis y Exploración -->
-            <div id="case-tab-anamnesis" class="case-tab-content flex flex-col gap-4">
-              <div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1.5">
-                <strong class="text-sm font-bold text-primary">Enfermedad Actual:</strong>
-                <p id="case-anamnesis-text" class="text-sm text-on-surface leading-relaxed">
+            <!-- Pestaña 1: Anamnesis -->
+            <div id="case-tab-anamnesis" class="case-tab-content flex flex-col gap-3">
+              <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200/70 flex flex-col gap-1">
+                <strong class="text-xs font-bold text-primary">Enfermedad Actual:</strong>
+                <p id="case-anamnesis-text" class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
                   Cargando relato...
                 </p>
               </div>
-              <div class="p-4 rounded-xl bg-surface-container-low flex flex-col gap-1.5">
-                <strong class="text-sm font-bold text-primary">Exploración Física Detallada:</strong>
-                <p id="case-exam-text" class="text-sm text-on-surface leading-relaxed">
-                  Cargando exploración física...
+              <div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200/70 flex flex-col gap-1">
+                <strong class="text-xs font-bold text-primary">Exploración Física Segmentaria:</strong>
+                <p id="case-exam-text" class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+                  Cargando examen físico...
                 </p>
               </div>
             </div>
 
-            <!-- Pestaña 2: Laboratorios y Pruebas -->
-            <div id="case-tab-labs" class="case-tab-content hidden flex flex-col gap-3">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Resultados de Laboratorio de Urgencia:</span>
+            <!-- Pestaña 2: Laboratorios -->
+            <div id="case-tab-labs" class="case-tab-content hidden flex flex-col gap-2.5">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Valores Críticos de Laboratorio:</span>
               <div id="case-labs-container" class="flex flex-col gap-2">
                 <!-- Renderizado dinámico -->
               </div>
             </div>
 
-            <!-- Pestaña 3: Toma de Decisiones Clínicas -->
+            <!-- Pestaña 3: Decisiones Clínicas -->
             <div id="case-tab-decisions" class="case-tab-content hidden flex flex-col gap-4">
-              <div class="flex items-center justify-between">
-                <span id="case-stage-counter" class="text-xs font-bold px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed">Etapa 1 de 3</span>
-                <span id="case-stage-title" class="text-xs font-bold text-secondary">Diagnóstico Inicial</span>
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <span id="case-stage-counter" class="text-[11px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">Etapa 1 de 3</span>
+                <span id="case-stage-title" class="text-xs font-bold text-slate-500">Diagnóstico Inicial</span>
               </div>
 
-              <p id="case-stage-prompt" class="text-base font-semibold text-on-surface leading-relaxed">
+              <p id="case-stage-prompt" class="text-sm font-semibold text-slate-900 leading-relaxed">
                 ¿Cuál es la primera sospecha diagnóstica?
               </p>
 
-              <div id="case-stage-options" class="flex flex-col gap-2.5">
-                <!-- Opciones de decisión clínica -->
+              <div id="case-stage-options" class="flex flex-col gap-2">
+                <!-- Opciones -->
               </div>
 
-              <!-- Retroalimentación formativa de la decisión -->
-              <div id="case-stage-feedback" class="hidden p-4 rounded-xl flex flex-col gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider text-secondary">Razonamiento Formativo:</span>
-                <p id="case-stage-feedback-text" class="text-sm leading-relaxed"></p>
-                <div class="flex justify-end pt-2">
-                  <button id="case-stage-next-btn" class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-bold text-xs hover:bg-primary-container transition-all" type="button">
+              <div id="case-stage-feedback" class="hidden p-4 rounded-lg flex flex-col gap-2 border">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Razonamiento Formativo:</span>
+                <p id="case-stage-feedback-text" class="text-xs sm:text-sm leading-relaxed text-slate-800"></p>
+                <div class="flex justify-end pt-1">
+                  <button id="case-stage-next-btn" class="px-4 py-2 rounded-lg bg-primary hover:bg-[#00507a] text-white font-semibold text-xs transition-all" type="button">
                     Avanzar a Siguiente Etapa
                   </button>
                 </div>
@@ -579,57 +553,55 @@
       <!-- ======================================================== -->
       <!-- VISTA 4: REPASO PERSONALIZADO Y PUNTOS DÉBILES (PRD #4) -->
       <!-- ======================================================== -->
-      <section id="view-review" class="app-view hidden flex flex-col gap-6">
+      <section id="view-review" class="app-view hidden flex flex-col gap-5">
         
         <!-- Cabecera de Repaso -->
-        <div class="bg-surface-container-lowest rounded-2xl p-5 shadow-xs border border-outline-variant/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="clinical-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="flex items-center gap-3">
-            <span class="p-2.5 bg-primary-fixed text-on-primary-fixed rounded-xl flex items-center justify-center">
-              <span class="material-symbols-outlined text-[22px]">history_edu</span>
+            <span class="p-2 bg-slate-100 text-slate-800 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">history_edu</span>
             </span>
             <div class="flex flex-col">
-              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Algoritmo Adaptativo</span>
-              <h2 class="font-heading text-lg sm:text-xl font-bold text-on-surface">Diagnóstico de Puntos Débiles</h2>
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Algoritmo Spaced Repetition</span>
+              <h2 class="font-heading text-base sm:text-lg font-bold text-slate-900">Diagnóstico de Puntos Débiles</h2>
             </div>
           </div>
-          <span class="text-xs font-bold px-3 py-1.5 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed self-start sm:self-auto">
-            Identificación Activa de Errores
+          <span class="text-[11px] font-bold px-2.5 py-1 rounded bg-slate-100 text-slate-700 self-start sm:self-auto">
+            Priorización Activa de Errores
           </span>
         </div>
 
-        <!-- Tarjetas de Temas con Más Errores -->
-        <div id="review-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <!-- Renderizado dinámico desde app.js -->
+        <!-- Tarjetas de Temas a Reforzar -->
+        <div id="review-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Renderizado dinámico -->
         </div>
 
-        <!-- Tarjeta de Repaso Rápido / Mnemotecnia Clínica Interactiva -->
-        <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-xs border border-outline-variant/30 flex flex-col gap-4">
-          <div class="flex items-center justify-between">
+        <!-- Tarjeta de Mnemotecnia Rápida -->
+        <div class="clinical-card p-5 sm:p-6 flex flex-col gap-3">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-[20px]">psychology</span>
-              <h3 class="font-heading text-base font-bold text-on-surface">Flashcard de Alto Rendimiento: Mnemotecnias</h3>
+              <span class="material-symbols-outlined text-primary text-[18px]">psychology</span>
+              <h3 class="font-heading text-sm font-bold text-slate-900">Flashcard High-Yield: Farmacología Clínica</h3>
             </div>
-            <span class="text-xs font-bold px-2 py-0.5 rounded-md bg-surface-container text-secondary">Cardiología / Farmacología</span>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">Cardiología</span>
           </div>
 
-          <div id="flashcard-interactive" class="p-6 rounded-2xl bg-surface-container-low border border-outline-variant/30 text-center flex flex-col items-center justify-center min-h-[140px] gap-2 transition-all">
+          <div id="flashcard-interactive" class="p-5 rounded-lg bg-slate-50 border border-slate-200 text-center flex flex-col items-center justify-center min-h-[120px] gap-2">
             <div id="flashcard-front" class="flex flex-col gap-1">
-              <span class="text-xs font-bold text-secondary uppercase tracking-widest">Pregunta Rápida</span>
-              <p class="text-base sm:text-lg font-bold text-on-surface">¿Cuáles son los 4 pilares farmacológicos con beneficio en mortalidad en Insuficiencia Cardíaca con FEVI reducida?</p>
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pregunta Directa</span>
+              <p class="text-sm sm:text-base font-bold text-slate-900">¿Cuáles son los 4 pilares farmacológicos con beneficio en supervivencia en IC con FEVI reducida?</p>
             </div>
-            <div id="flashcard-back" class="hidden flex flex-col gap-1.5 text-center">
-              <span class="text-xs font-bold text-tertiary uppercase tracking-widest">Respuesta / Los "Cuatro Fantásticos"</span>
-              <p class="text-sm sm:text-base font-semibold text-on-surface">
-                1. <strong>ARNI / IECA</strong> (Sacubitrilo/Valsartán)<br/>
-                2. <strong>Betabloqueador</strong> (Bisoprolol, Carvedilol o Metoprolol succinato)<br/>
-                3. <strong>Antagonista de Aldosterona</strong> (Espironolactona o Eplerenona)<br/>
-                4. <strong>iSGLT2</strong> (Dapagliflozina o Empagliflozina)
+            <div id="flashcard-back" class="hidden flex flex-col gap-1 text-center">
+              <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">Respuesta / Los "Cuatro Fantásticos"</span>
+              <p class="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed">
+                1. <strong>ARNI / IECA</strong> (Sacubitrilo/Valsartán) • 2. <strong>Betabloqueador</strong> (Bisoprolol/Carvedilol)<br/>
+                3. <strong>Antagonista Aldosterona</strong> (Espironolactona) • 4. <strong>iSGLT2</strong> (Dapagliflozina/Empagliflozina)
               </p>
             </div>
           </div>
 
           <div class="flex justify-center">
-            <button id="flashcard-flip-btn" class="px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs transition-all" type="button">
+            <button id="flashcard-flip-btn" class="px-4 py-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs transition-all" type="button">
               Revelar Mnemotecnia Clínica
             </button>
           </div>
@@ -643,53 +615,51 @@
       <section id="view-tutor" class="app-view hidden flex flex-col gap-4">
         
         <!-- Cabecera del Tutor -->
-        <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-5 shadow-xs border border-outline-variant/30 flex flex-wrap items-center justify-between gap-3">
+        <div class="clinical-card p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
           <div class="flex items-center gap-3">
-            <span class="p-2.5 bg-primary-fixed text-on-primary-fixed rounded-xl flex items-center justify-center">
-              <span class="material-symbols-outlined text-[22px]">smart_toy</span>
+            <span class="p-2 bg-slate-100 text-slate-800 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-[20px]">smart_toy</span>
             </span>
             <div class="flex flex-col">
               <div class="flex items-center gap-2">
-                <h2 class="font-heading text-lg sm:text-xl font-bold text-on-surface">Tutor de Inteligencia Artificial Médico</h2>
-                <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                <h2 class="font-heading text-base sm:text-lg font-bold text-slate-900">Tutor de Inteligencia Artificial Médico</h2>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-indicator"></span>
               </div>
-              <span class="text-xs text-secondary font-medium">Explicaciones clínicas, analogías y preguntas de práctica adaptativas</span>
+              <span class="text-[11px] text-slate-500 font-medium">Orientación pedagógica, resolución de viñetas y fisiopatología clínica</span>
             </div>
           </div>
-          <span class="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-surface-container text-secondary">
-            Fines Estrictamente Educativos
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">
+            Fines Formativos
           </span>
         </div>
 
         <!-- Preguntas Rápidas Sugeridas -->
         <div class="flex flex-col gap-1.5">
-          <span class="text-xs font-bold text-secondary uppercase tracking-wider px-1">Preguntas Frecuentes Sugeridas:</span>
+          <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider px-1">Consultas Clínicas Sugeridas:</span>
           <div id="tutor-quick-prompts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-            <!-- Renderizado dinámico desde app.js -->
+            <!-- Renderizado dinámico -->
           </div>
         </div>
 
-        <!-- Ventana de Mensajes del Chat -->
-        <div class="bg-surface-container-lowest rounded-2xl p-4 sm:p-6 shadow-xs border border-outline-variant/30 flex flex-col h-[460px]">
-          
-          <div id="tutor-chat-messages" class="flex-1 overflow-y-auto flex flex-col gap-4 pr-1">
-            <!-- Renderizado dinámico desde app.js -->
+        <!-- Ventana del Chat -->
+        <div class="clinical-card p-4 sm:p-5 flex flex-col h-[460px]">
+          <div id="tutor-chat-messages" class="flex-1 overflow-y-auto flex flex-col gap-3.5 pr-1">
+            <!-- Mensajes -->
           </div>
 
-          <!-- Barra de Entrada de Mensaje -->
-          <div class="pt-4 border-t border-outline-variant/20 flex items-center gap-2">
-            <input id="tutor-chat-input" class="flex-1 px-4 py-3 rounded-xl bg-surface-container-low text-on-surface text-sm border border-outline-variant/30 focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-outline" placeholder="Escribe tu duda médica (ej. 'Explícame el shock séptico')..." type="text"/>
-            <button id="tutor-send-btn" class="p-3 rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center justify-center shrink-0 shadow-sm" type="button" title="Enviar mensaje">
-              <span class="material-symbols-outlined text-[20px]">send</span>
+          <!-- Barra de Mensaje -->
+          <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
+            <input id="tutor-chat-input" class="flex-1 px-3.5 py-2.5 rounded-lg bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-slate-900 text-xs sm:text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-slate-400 transition-all" placeholder="Consulta una duda médica (ej. 'Explícame el shock séptico vs cardiogénico')..." type="text"/>
+            <button id="tutor-send-btn" class="px-4 py-2.5 rounded-lg bg-primary hover:bg-[#00507a] text-white flex items-center justify-center shrink-0 shadow-xs transition-all" type="button" title="Enviar consulta">
+              <span class="material-symbols-outlined text-[18px]">send</span>
             </button>
           </div>
-
         </div>
 
-        <!-- Disclaimer Médico Obligatorio del PRD -->
-        <div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant/30 text-xs text-secondary flex items-center gap-2">
-          <span class="material-symbols-outlined text-outline text-[18px] shrink-0">info</span>
-          <span><strong>Aviso Académico:</strong> Esta herramienta tiene fines exclusivamente educativos para estudiantes de medicina. No reemplaza guías docentes ni debe emplearse para diagnóstico ni prescripción en pacientes reales.</span>
+        <!-- Descargo de Responsabilidad PRD -->
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/80 text-[11px] text-slate-500 flex items-center gap-2 leading-relaxed">
+          <span class="material-symbols-outlined text-slate-400 text-[16px] shrink-0">info</span>
+          <span><strong>Aviso de Alcance:</strong> Herramienta académica para estudiantes de medicina. No sustituye la consulta docente hospitalaria ni diagnósticos clínicos en pacientes reales.</span>
         </div>
 
       </section>
@@ -697,65 +667,65 @@
     </div>
   </main>
 
-  <!-- ==================== MODAL DE RESUMEN DEL QUIZ ==================== -->
-  <div id="quiz-summary-modal" class="hidden fixed inset-0 bg-on-surface/40 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-    <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-xl border border-outline-variant/30 flex flex-col items-center text-center gap-4">
-      <div class="w-16 h-16 rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
-        <span class="material-symbols-outlined text-[36px]">emoji_events</span>
+  <!-- ==================== MODAL DE RESUMEN ==================== -->
+  <div id="quiz-summary-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl p-6 sm:p-7 max-w-sm w-full shadow-xl border border-slate-200 flex flex-col items-center text-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[28px]">verified</span>
       </div>
       <div class="flex flex-col gap-1">
-        <h3 class="font-heading text-2xl font-bold text-on-surface">¡Sesión Completada!</h3>
-        <p id="modal-feedback-text" class="text-sm text-secondary leading-relaxed">
-          Buen avance en tu sesión de estudio.
+        <h3 class="font-heading text-lg font-bold text-slate-900">Evaluación Completada</h3>
+        <p id="modal-feedback-text" class="text-xs text-slate-500 leading-relaxed font-normal">
+          Sesión formativa registrada en tu perfil.
         </p>
       </div>
-      <div class="w-full p-4 rounded-2xl bg-surface-container-low flex items-center justify-around">
+      <div class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-around">
         <div class="flex flex-col">
-          <span class="text-xs text-secondary font-bold uppercase">Puntaje</span>
-          <span id="modal-score-pct" class="font-heading text-2xl font-bold text-primary">80%</span>
+          <span class="text-[10px] text-slate-400 font-bold uppercase">Puntaje</span>
+          <span id="modal-score-pct" class="font-heading text-xl font-bold text-primary tabular-nums">80%</span>
         </div>
-        <div class="h-8 w-px bg-outline-variant/40"></div>
+        <div class="h-6 w-px bg-slate-200"></div>
         <div class="flex flex-col">
-          <span class="text-xs text-secondary font-bold uppercase">Aciertos</span>
-          <span id="modal-correct-count" class="font-heading text-lg font-bold text-tertiary">4 de 5</span>
+          <span class="text-[10px] text-slate-400 font-bold uppercase">Aciertos</span>
+          <span id="modal-correct-count" class="font-heading text-sm font-bold text-emerald-700 tabular-nums">4 de 5</span>
         </div>
       </div>
-      <div class="flex flex-col sm:flex-row gap-2 w-full pt-2">
-        <button onclick="window.medpulseApp.resetQuizSession()" class="flex-1 py-3 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-bold text-xs transition-all" type="button">
-          Repetir Test
+      <div class="flex gap-2 w-full pt-1">
+        <button onclick="window.medpulseApp.resetQuizSession()" class="flex-1 py-2 px-3 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs transition-all" type="button">
+          Repetir
         </button>
-        <button onclick="window.medpulseApp.switchView('dashboard')" class="flex-1 py-3 px-4 rounded-xl bg-primary text-on-primary font-bold text-xs hover:bg-primary-container transition-all" type="button">
+        <button onclick="window.medpulseApp.switchView('dashboard')" class="flex-1 py-2 px-3 rounded-lg bg-primary hover:bg-[#00507a] text-white font-semibold text-xs transition-all" type="button">
           Ir al Dashboard
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== BARRA DE NAVEGACIÓN INFERIOR PARA CELULARES ==================== -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface-container-lowest/95 backdrop-blur-md border-t border-outline-variant/30 flex items-center justify-around z-50 shadow-lg px-1">
-    <button class="mobile-nav-item flex flex-col items-center justify-center gap-1 flex-1 py-1 text-primary font-bold transition-all" data-nav-target="dashboard" type="button">
+  <!-- ==================== BARRA MÓVIL INFERIOR DE GRADO HOSPITALARIO ==================== -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 mobile-nav-bar flex items-center justify-around z-50 px-1">
+    <button class="mobile-nav-btn mobile-nav-item flex-1 active" data-nav-target="dashboard" type="button">
       <span class="material-symbols-outlined text-[20px]">analytics</span>
-      <span class="text-[10px] tracking-tight">Dashboard</span>
+      <span class="text-[10px] font-semibold mt-0.5">Inicio</span>
     </button>
-    <button class="mobile-nav-item flex flex-col items-center justify-center gap-1 flex-1 py-1 text-secondary transition-all" data-nav-target="quiz" type="button">
+    <button class="mobile-nav-btn mobile-nav-item flex-1" data-nav-target="quiz" type="button">
       <span class="material-symbols-outlined text-[20px]">quiz</span>
-      <span class="text-[10px] tracking-tight">Preguntas</span>
+      <span class="text-[10px] font-semibold mt-0.5">Preguntas</span>
     </button>
-    <button class="mobile-nav-item flex flex-col items-center justify-center gap-1 flex-1 py-1 text-secondary transition-all" data-nav-target="cases" type="button">
+    <button class="mobile-nav-btn mobile-nav-item flex-1" data-nav-target="cases" type="button">
       <span class="material-symbols-outlined text-[20px]">clinical_notes</span>
-      <span class="text-[10px] tracking-tight">Casos</span>
+      <span class="text-[10px] font-semibold mt-0.5">Casos</span>
     </button>
-    <button class="mobile-nav-item flex flex-col items-center justify-center gap-1 flex-1 py-1 text-secondary transition-all" data-nav-target="review" type="button">
+    <button class="mobile-nav-btn mobile-nav-item flex-1" data-nav-target="review" type="button">
       <span class="material-symbols-outlined text-[20px]">history_edu</span>
-      <span class="text-[10px] tracking-tight">Repaso</span>
+      <span class="text-[10px] font-semibold mt-0.5">Repaso</span>
     </button>
-    <button class="mobile-nav-item flex flex-col items-center justify-center gap-1 flex-1 py-1 text-secondary transition-all" data-nav-target="tutor" type="button">
+    <button class="mobile-nav-btn mobile-nav-item flex-1" data-nav-target="tutor" type="button">
       <span class="material-symbols-outlined text-[20px]">smart_toy</span>
-      <span class="text-[10px] tracking-tight">Tutor IA</span>
+      <span class="text-[10px] font-semibold mt-0.5">Tutor IA</span>
     </button>
   </nav>
 
-  <!-- Módulos JavaScript -->
+  <!-- Lógica Principal -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

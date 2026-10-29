@@ -72,20 +72,18 @@ class MedPulseApp {
       if (btn.classList.contains('mobile-nav-item')) {
         // Estilos móviles
         if (isTarget) {
-          btn.classList.add('text-primary', 'font-bold');
-          btn.classList.remove('text-secondary');
+          btn.classList.add('active');
         } else {
-          btn.classList.remove('text-primary', 'font-bold');
-          btn.classList.add('text-secondary');
+          btn.classList.remove('active');
         }
       } else {
         // Estilos escritorio (sidebar)
         if (isTarget) {
-          btn.classList.add('bg-primary', 'text-on-primary', 'font-semibold', 'shadow-sm');
-          btn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+          btn.classList.add('bg-primary', 'text-white', 'font-semibold', 'shadow-xs');
+          btn.classList.remove('text-slate-600', 'hover:bg-slate-100', 'hover:text-slate-900');
         } else {
-          btn.classList.remove('bg-primary', 'text-on-primary', 'font-semibold', 'shadow-sm');
-          btn.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+          btn.classList.remove('bg-primary', 'text-white', 'font-semibold', 'shadow-xs');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100', 'hover:text-slate-900');
         }
       }
     });
@@ -104,7 +102,6 @@ class MedPulseApp {
   // --- FUNCIÓN 3: DASHBOARD & SEGUIMIENTO DEL PROGRESO ---
   renderDashboard() {
     const stats = store.getStats();
-    const user = store.getUser();
 
     // Actualizar KPIs principales
     const elAccuracy = document.getElementById('dash-accuracy');
@@ -132,20 +129,20 @@ class MedPulseApp {
       const specs = stats.specialties || {};
       for (const [name, data] of Object.entries(specs)) {
         const pct = data.answered > 0 ? Math.round((data.correct / data.answered) * 100) : 70;
-        const colorClass = pct >= 80 ? 'bg-tertiary text-on-tertiary-container' : pct >= 60 ? 'bg-primary' : 'bg-error';
-        const badgeColor = pct >= 80 ? 'bg-tertiary-fixed text-on-tertiary-fixed' : pct >= 60 ? 'bg-primary-fixed text-on-primary-fixed' : 'bg-error-container text-on-error-container';
+        const colorClass = pct >= 80 ? 'bg-emerald-600' : pct >= 60 ? 'bg-primary' : 'bg-rose-600';
+        const badgeColor = pct >= 80 ? 'bg-emerald-50 text-emerald-800 border-emerald-200' : pct >= 60 ? 'bg-blue-50 text-blue-800 border-blue-200' : 'bg-rose-50 text-rose-800 border-rose-200';
 
         const row = document.createElement('div');
-        row.className = 'p-3 bg-surface-container-low rounded-xl flex flex-col gap-2 transition-all hover:bg-surface-container';
+        row.className = 'p-3 bg-slate-50 border border-slate-200/70 rounded-lg flex flex-col gap-2 transition-all hover:bg-slate-100/70';
         row.innerHTML = `
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span class="font-title-sm text-title-sm text-on-surface font-semibold">${name}</span>
-              <span class="text-xs px-2 py-0.5 rounded-full font-medium ${badgeColor}">${data.correct}/${data.answered} acertadas</span>
+              <span class="text-xs font-semibold text-slate-800">${name}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded border font-medium ${badgeColor}">${data.correct}/${data.answered} acertadas</span>
             </div>
-            <span class="font-headline-sm text-headline-sm font-bold text-on-surface">${pct}%</span>
+            <span class="text-sm font-bold text-slate-900 tabular-nums">${pct}%</span>
           </div>
-          <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+          <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
             <div class="h-full ${colorClass} rounded-full transition-all duration-500" style="width: ${pct}%"></div>
           </div>
         `;
@@ -159,20 +156,18 @@ class MedPulseApp {
       historyContainer.innerHTML = '';
       (stats.history || []).forEach(item => {
         const itemEl = document.createElement('div');
-        itemEl.className = 'p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/30 flex items-center justify-between gap-3 shadow-xs';
+        itemEl.className = 'p-2.5 rounded-lg bg-slate-50 border border-slate-200/70 flex items-center justify-between gap-3 text-xs';
         itemEl.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="p-2 rounded-lg bg-surface-container text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-[18px]">verified</span>
+          <div class="flex items-center gap-2.5">
+            <span class="p-1.5 rounded-md bg-white border border-slate-200 text-slate-700 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
             </span>
             <div class="flex flex-col">
-              <span class="font-body-md text-on-surface font-semibold text-sm leading-snug">${item.title}</span>
-              <span class="text-xs text-secondary">${item.date} • <span class="text-primary font-medium">${item.tag}</span></span>
+              <span class="font-semibold text-slate-900">${item.title}</span>
+              <span class="text-[10px] text-slate-500">${item.date} • <span class="text-primary font-medium">${item.tag}</span></span>
             </div>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="text-sm font-bold px-2.5 py-1 rounded-lg bg-primary-fixed text-on-primary-fixed">${item.score}</span>
-          </div>
+          <span class="font-bold px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-800 tabular-nums">${item.score}</span>
         `;
         historyContainer.appendChild(itemEl);
       });
@@ -218,20 +213,18 @@ class MedPulseApp {
     const q = this.quizState.questions[this.quizState.currentIndex];
     if (!q) return;
 
-    // Segmented progress tracker
+    // Barra de Progreso Segmentada
     const trackerContainer = document.getElementById('quiz-progress-tracker');
     if (trackerContainer) {
       trackerContainer.innerHTML = '';
       this.quizState.questions.forEach((_, idx) => {
         const seg = document.createElement('div');
-        seg.className = 'h-2 rounded-full transition-all duration-300';
+        seg.className = 'progress-segment';
         if (idx < this.quizState.currentIndex) {
           const ans = this.quizState.userAnswers[idx];
-          seg.className += ans && ans.isCorrect ? ' bg-tertiary' : ' bg-error';
+          seg.className += ans && ans.isCorrect ? ' seg-correct' : ' seg-incorrect';
         } else if (idx === this.quizState.currentIndex) {
-          seg.className += ' bg-primary animate-pulse';
-        } else {
-          seg.className += ' bg-surface-container-high';
+          seg.className += ' seg-active';
         }
         trackerContainer.appendChild(seg);
       });
@@ -255,14 +248,14 @@ class MedPulseApp {
       q.options.forEach(opt => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'quiz-option-btn w-full text-left p-4 rounded-xl border border-outline-variant/40 bg-surface-container-lowest hover:bg-surface-container transition-all flex items-start gap-3 shadow-xs';
+        btn.className = 'quiz-option-btn w-full text-left p-3.5 sm:p-4 flex items-start gap-3';
         btn.setAttribute('data-option-id', opt.id);
 
         btn.innerHTML = `
-          <span class="w-8 h-8 rounded-lg bg-surface-container text-on-surface font-bold text-sm flex items-center justify-center shrink-0 option-badge">
+          <span class="w-7 h-7 rounded-md bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 option-badge border border-slate-200">
             ${opt.id}
           </span>
-          <span class="font-body-md text-on-surface text-sm sm:text-base leading-relaxed pt-0.5">
+          <span class="text-xs sm:text-sm text-slate-800 leading-relaxed pt-0.5">
             ${opt.text}
           </span>
         `;
@@ -277,14 +270,14 @@ class MedPulseApp {
       });
     }
 
-    // Ocultar caja de explicación y botón siguiente inicialmente
+    // Ocultar explicación y botón
     const explanationBox = document.getElementById('quiz-explanation-box');
     if (explanationBox) explanationBox.classList.add('hidden');
 
     const nextBtn = document.getElementById('quiz-next-btn');
     if (nextBtn) {
       nextBtn.classList.add('hidden');
-      nextBtn.textContent = this.quizState.currentIndex === this.quizState.questions.length - 1 ? 'Ver Resultados' : 'Siguiente Pregunta';
+      nextBtn.textContent = this.quizState.currentIndex === this.quizState.questions.length - 1 ? 'Finalizar y Ver Resultados' : 'Siguiente Pregunta';
     }
   }
 
@@ -298,10 +291,10 @@ class MedPulseApp {
       isCorrect
     };
 
-    // Guardar en store y actualizar métricas
+    // Guardar en store
     store.recordQuizAnswer(question, chosenId, isCorrect);
 
-    // Pintar opciones
+    // Pintar opciones con estilos de grado médico
     const optionButtons = document.querySelectorAll('.quiz-option-btn');
     optionButtons.forEach(btn => {
       const optId = btn.getAttribute('data-option-id');
@@ -309,25 +302,23 @@ class MedPulseApp {
       btn.disabled = true;
 
       if (optId === question.correctAnswer) {
-        btn.classList.remove('bg-surface-container-lowest', 'border-outline-variant/40');
-        btn.classList.add('bg-tertiary-fixed/30', 'border-tertiary', 'text-on-surface');
+        btn.classList.add('opt-correct');
         if (badge) {
-          badge.className = 'w-8 h-8 rounded-lg bg-tertiary text-on-tertiary font-bold text-sm flex items-center justify-center shrink-0';
-          badge.innerHTML = '<span class="material-symbols-outlined text-[18px]">check</span>';
+          badge.className = 'w-7 h-7 rounded-md bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0';
+          badge.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span>';
         }
       } else if (optId === chosenId && !isCorrect) {
-        btn.classList.remove('bg-surface-container-lowest', 'border-outline-variant/40');
-        btn.classList.add('bg-error-container/40', 'border-error', 'text-on-surface');
+        btn.classList.add('opt-incorrect');
         if (badge) {
-          badge.className = 'w-8 h-8 rounded-lg bg-error text-on-error font-bold text-sm flex items-center justify-center shrink-0';
-          badge.innerHTML = '<span class="material-symbols-outlined text-[18px]">close</span>';
+          badge.className = 'w-7 h-7 rounded-md bg-rose-600 text-white font-bold text-xs flex items-center justify-center shrink-0';
+          badge.innerHTML = '<span class="material-symbols-outlined text-[16px]">close</span>';
         }
       } else {
-        btn.classList.add('opacity-60');
+        btn.classList.add('opacity-50');
       }
     });
 
-    // Mostrar panel de explicación
+    // Mostrar panel de fundamentación clínica
     const explanationBox = document.getElementById('quiz-explanation-box');
     if (explanationBox) {
       explanationBox.classList.remove('hidden');
@@ -336,8 +327,8 @@ class MedPulseApp {
       const pearlEl = document.getElementById('quiz-exp-pearl');
 
       if (titleEl) {
-        titleEl.textContent = isCorrect ? '¡Respuesta Correcta!' : 'Respuesta Incorrecta';
-        titleEl.className = `font-headline-sm text-lg font-bold ${isCorrect ? 'text-tertiary' : 'text-error'}`;
+        titleEl.textContent = isCorrect ? 'Respuesta Correcta' : 'Respuesta Incorrecta';
+        titleEl.className = `font-heading text-sm font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`;
       }
 
       if (textEl) {
@@ -359,15 +350,15 @@ class MedPulseApp {
     const correct = this.quizState.score;
     const scorePct = Math.round((correct / total) * 100);
 
-    store.recordQuizCompleted("Autoevaluación Clínica", correct, total, "Medicina General");
+    store.recordQuizCompleted("Autoevaluación Formativa", correct, total, "Medicina General");
 
     const modal = document.getElementById('quiz-summary-modal');
     if (modal) {
       modal.classList.remove('hidden');
       document.getElementById('modal-score-pct').textContent = `${scorePct}%`;
-      document.getElementById('modal-correct-count').textContent = `${correct} de ${total} preguntas acertadas`;
+      document.getElementById('modal-correct-count').textContent = `${correct} de ${total}`;
       
-      const feedbackText = scorePct >= 80 ? '¡Excelente rendimiento clínico! Dominas los conceptos clave.' : scorePct >= 60 ? 'Buen avance. Tienes algunos temas por afianzar en el módulo de Repaso.' : 'Requiere refuerzo urgente. Te recomendamos revisar tus puntos débiles.';
+      const feedbackText = scorePct >= 80 ? 'Excelente asimilación de conceptos fisiopatológicos y farmacológicos.' : scorePct >= 60 ? 'Rendimiento aceptable. Se recomienda repasar los puntos débiles identificados.' : 'Requiere refuerzo urgente en farmacoterapia antes de la rotación.';
       document.getElementById('modal-feedback-text').textContent = feedbackText;
     }
   }
@@ -382,19 +373,15 @@ class MedPulseApp {
       btn.addEventListener('click', () => {
         const tab = btn.getAttribute('data-case-tab');
         this.caseState.activeTab = tab;
-        tabBtns.forEach(b => {
-          b.classList.remove('border-primary', 'text-primary', 'font-bold');
-          b.classList.add('border-transparent', 'text-secondary');
-        });
-        btn.classList.add('border-primary', 'text-primary', 'font-bold');
-        btn.classList.remove('border-transparent', 'text-secondary');
+        tabBtns.forEach(b => b.classList.remove('tab-active'));
+        btn.classList.add('tab-active');
 
         document.querySelectorAll('.case-tab-content').forEach(c => c.classList.add('hidden'));
         document.getElementById(`case-tab-${tab}`)?.classList.remove('hidden');
       });
     });
 
-    // Selector de caso (Caso 1 o Caso 2)
+    // Selector de caso
     const caseSelect = document.getElementById('case-select');
     if (caseSelect) {
       caseSelect.addEventListener('change', (e) => {
@@ -414,13 +401,13 @@ class MedPulseApp {
     document.getElementById('case-patient-details').textContent = `${c.patient.age} • ${c.patient.sex} • ${c.patient.occupation}`;
     document.getElementById('case-title').textContent = c.title;
 
-    // Factores de riesgo / Antecedentes
+    // Antecedentes
     const antContainer = document.getElementById('case-antecedents');
     if (antContainer) {
       antContainer.innerHTML = '';
       c.patient.antecedents.forEach(item => {
         const badge = document.createElement('span');
-        badge.className = 'px-2.5 py-1 rounded-md text-xs font-semibold bg-surface-container-high text-on-surface-variant';
+        badge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200';
         badge.textContent = item;
         antContainer.appendChild(badge);
       });
@@ -445,19 +432,19 @@ class MedPulseApp {
       labsContainer.innerHTML = '';
       c.labs.forEach(lab => {
         const labRow = document.createElement('div');
-        labRow.className = `p-3 rounded-lg flex items-center justify-between gap-3 text-sm ${lab.alert ? 'bg-error-container/30 border border-error/30' : 'bg-surface-container-low'}`;
+        labRow.className = `p-2.5 rounded-lg flex items-center justify-between gap-3 text-xs ${lab.alert ? 'bg-rose-50 border border-rose-200 text-rose-900' : 'bg-slate-50 border border-slate-200 text-slate-800'}`;
         labRow.innerHTML = `
           <div class="flex flex-col">
-            <span class="font-semibold text-on-surface">${lab.name}</span>
-            <span class="text-xs text-secondary">${lab.normal ? `Valor referencia: ${lab.normal}` : ''}</span>
+            <span class="font-semibold">${lab.name}</span>
+            <span class="text-[10px] text-slate-500">${lab.normal ? `Referencia: ${lab.normal}` : ''}</span>
           </div>
-          <span class="font-bold ${lab.alert ? 'text-error' : 'text-primary'} text-right">${lab.value}</span>
+          <span class="font-bold tabular-nums text-right ${lab.alert ? 'text-rose-700' : 'text-slate-900'}">${lab.value}</span>
         `;
         labsContainer.appendChild(labRow);
       });
     }
 
-    // Etapas de toma de decisiones
+    // Etapa de decisión
     this.renderCaseStage(c);
   }
 
@@ -475,12 +462,12 @@ class MedPulseApp {
       stage.options.forEach(opt => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'w-full text-left p-3.5 rounded-xl border border-outline-variant/40 bg-surface-container-lowest hover:bg-surface-container transition-all flex items-start gap-3 shadow-xs';
+        btn.className = 'w-full text-left p-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-all flex items-start gap-2.5';
         btn.innerHTML = `
-          <span class="w-7 h-7 rounded-md bg-surface-container text-on-surface font-bold text-xs flex items-center justify-center shrink-0">
+          <span class="w-6 h-6 rounded bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200">
             ${opt.id}
           </span>
-          <span class="text-sm font-medium text-on-surface leading-relaxed">${opt.text}</span>
+          <span class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">${opt.text}</span>
         `;
 
         btn.addEventListener('click', () => {
@@ -503,10 +490,10 @@ class MedPulseApp {
       const textEl = document.getElementById('case-stage-feedback-text');
       if (textEl) textEl.textContent = stage.feedback;
 
-      feedbackBox.className = `p-4 rounded-xl flex flex-col gap-2 ${isCorrect ? 'bg-tertiary-fixed/30 border border-tertiary text-on-surface' : 'bg-surface-container border border-primary text-on-surface'}`;
+      feedbackBox.className = `p-4 rounded-lg flex flex-col gap-1.5 border ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-slate-50 border-slate-200 text-slate-900'}`;
     }
 
-    // Siguiente etapa o finalizar caso
+    // Siguiente etapa o finalizar
     const nextBtn = document.getElementById('case-stage-next-btn');
     if (nextBtn) {
       nextBtn.classList.remove('hidden');
@@ -518,7 +505,7 @@ class MedPulseApp {
           this.renderCaseStage(currentCase);
         } else {
           store.recordCaseCompleted(currentCase.id, 100);
-          alert(`¡Felicitaciones! Has resuelto con éxito el ${currentCase.title}. Se ha registrado en tu progreso.`);
+          alert(`Caso completado: ${currentCase.title}. Se ha registrado en tu historial formativo.`);
           this.switchView('dashboard');
         }
       };
@@ -538,33 +525,32 @@ class MedPulseApp {
     container.innerHTML = '';
     weakPoints.forEach(wp => {
       const card = document.createElement('div');
-      card.className = 'p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 shadow-xs flex flex-col justify-between gap-4 transition-all hover:shadow-md';
+      card.className = 'clinical-card p-4 sm:p-5 flex flex-col justify-between gap-3';
       card.innerHTML = `
         <div class="flex flex-col gap-2">
           <div class="flex items-center justify-between">
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-error-container text-on-error-container">
-              Tasa de Fallo: ${wp.errorRate}%
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-50 text-rose-800 border border-rose-200">
+              Fallo: ${wp.errorRate}%
             </span>
-            <span class="text-xs font-semibold text-secondary">${wp.specialty}</span>
+            <span class="text-xs font-semibold text-slate-500">${wp.specialty}</span>
           </div>
-          <h3 class="font-headline-sm text-lg font-bold text-on-surface">${wp.topic}</h3>
-          <p class="text-sm text-on-surface-variant leading-relaxed">${wp.diagnostic}</p>
+          <h3 class="font-heading text-sm font-bold text-slate-900">${wp.topic}</h3>
+          <p class="text-xs text-slate-600 leading-relaxed font-normal">${wp.diagnostic}</p>
         </div>
-        <div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-2.5 text-xs text-on-surface">
-          <span class="material-symbols-outlined text-primary text-[18px] shrink-0">lightbulb</span>
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/70 flex items-start gap-2 text-xs text-slate-700">
+          <span class="material-symbols-outlined text-primary text-[16px] shrink-0">lightbulb</span>
           <div class="flex flex-col">
-            <strong class="font-semibold text-primary">Acción de Alto Rendimiento:</strong>
-            <span>${wp.highYieldAction}</span>
+            <strong class="font-semibold text-slate-900 text-[11px]">Acción Formativa:</strong>
+            <span class="text-[11px] text-slate-600">${wp.highYieldAction}</span>
           </div>
         </div>
-        <button type="button" class="start-targeted-review-btn w-full py-2.5 px-4 rounded-xl bg-primary text-on-primary font-semibold text-sm hover:bg-primary-container transition-all flex items-center justify-center gap-2 shadow-sm" data-specialty="${wp.specialty}">
-          <span class="material-symbols-outlined text-[18px]">play_circle</span>
-          <span>Iniciar Test de Refuerzo (${wp.specialty})</span>
+        <button type="button" class="start-targeted-review-btn w-full py-2 px-3 rounded-lg bg-primary hover:bg-[#00507a] text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-xs" data-specialty="${wp.specialty}">
+          <span class="material-symbols-outlined text-[16px]">play_circle</span>
+          <span>Iniciar Refuerzo (${wp.specialty})</span>
         </button>
       `;
 
       card.querySelector('.start-targeted-review-btn').addEventListener('click', () => {
-        // Filtrar preguntas de esa especialidad
         const filtered = QUIZ_QUESTIONS.filter(q => q.specialty === wp.specialty);
         this.resetQuizSession(filtered.length > 0 ? filtered : QUIZ_QUESTIONS);
         this.switchView('quiz');
@@ -573,7 +559,7 @@ class MedPulseApp {
       container.appendChild(card);
     });
 
-    // Flashcard interactiva de repaso rápido
+    // Flashcard interactiva
     const flipCard = document.getElementById('flashcard-interactive');
     const flipBtn = document.getElementById('flashcard-flip-btn');
     if (flipCard && flipBtn) {
@@ -619,17 +605,17 @@ class MedPulseApp {
       });
     }
 
-    // Botones de preguntas rápidas preconfiguradas
+    // Prompts sugeridos
     const quickPromptsContainer = document.getElementById('tutor-quick-prompts');
     if (quickPromptsContainer) {
       quickPromptsContainer.innerHTML = '';
       TUTOR_QUICK_PROMPTS.forEach(p => {
         const pill = document.createElement('button');
         pill.type = 'button';
-        pill.className = 'p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container text-left transition-all border border-outline-variant/30 flex flex-col gap-0.5 text-xs';
+        pill.className = 'p-2 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition-all flex flex-col gap-0.5 text-xs';
         pill.innerHTML = `
-          <span class="font-bold text-primary">${p.title}</span>
-          <span class="text-secondary truncate">${p.subtitle}</span>
+          <span class="font-bold text-primary text-[11px]">${p.title}</span>
+          <span class="text-slate-500 text-[10px] truncate">${p.subtitle}</span>
         `;
         pill.addEventListener('click', () => {
           this.sendUserChatMessage(p.query);
@@ -651,15 +637,15 @@ class MedPulseApp {
       const msgDiv = document.createElement('div');
       msgDiv.className = `flex flex-col gap-1 max-w-2xl ${isUser ? 'ml-auto items-end' : 'mr-auto items-start'}`;
 
-      const bubbleColor = isUser ? 'bg-primary text-on-primary rounded-2xl rounded-tr-xs' : 'bg-surface-container-lowest border border-outline-variant/30 text-on-surface rounded-2xl rounded-tl-xs shadow-xs';
+      const bubbleClass = isUser ? 'chat-bubble-user' : 'chat-bubble-ai';
 
       msgDiv.innerHTML = `
-        <div class="flex items-center gap-1.5 text-xs text-secondary px-1">
-          <span>${isUser ? 'Dra. Sofía Rivas' : 'Tutor IA Médico'}</span>
+        <div class="flex items-center gap-1.5 text-[10px] text-slate-400 px-1">
+          <span>${isUser ? 'Dra. Sofía Rivas' : 'Tutor Clínico'}</span>
           <span>•</span>
           <span>${msg.time}</span>
         </div>
-        <div class="p-4 ${bubbleColor} text-sm sm:text-base leading-relaxed whitespace-pre-line">
+        <div class="${bubbleClass} whitespace-pre-line font-normal">
           ${this.formatChatText(msg.text)}
         </div>
       `;
@@ -671,75 +657,68 @@ class MedPulseApp {
   }
 
   formatChatText(text) {
-    // Formatea negritas y listas con markdown básico
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>')
-      .replace(/> (.*?)\n/g, '<blockquote class="border-l-4 border-primary pl-2 my-1 text-primary-fixed-variant">$1</blockquote>\n');
+      .replace(/> (.*?)\n/g, '<blockquote>$1</blockquote>\n');
   }
 
   sendUserChatMessage(text) {
     store.addChatMessage('user', text);
     this.renderChatHistory();
 
-    // Simular respuesta clínica inteligente pedagógica
     setTimeout(() => {
       const response = this.generateMedicalAIResponse(text);
       store.addChatMessage('ai', response);
       this.renderChatHistory();
-    }, 600);
+    }, 500);
   }
 
   generateMedicalAIResponse(query) {
     const qLower = query.toLowerCase();
 
     if (qLower.includes('ieca') || qLower.includes('nefroprotecc')) {
-      return `¡Gran pregunta, Sofía! Vamos a desglosar el mecanismo de los **IECA** de forma clara:
+      return `Estimada Dra. Rivas, abordemos el fundamento fisiopatológico de los **IECA**:
 
-**1. Fisiopatología:**
-- En la diabetes e hipertensión, la arteriola eferente del glomérulo se encuentra constreñida por la angiotensina II, aumentando la presión de filtración intraglomerular (hiperfiltración perjudicial).
-- Los IECA (como Enalapril o Ramipril) inhiben la ECA, reduciendo la Angiotensina II y dilatando preferentemente la **arteriola eferente**.
+**1. Dinámica Glomerular:**
+- En la nefropatía diabética temprana existe vasoconstricción preferencial de la arteriola eferente mediada por angiotensina II, lo que incrementa la presión intraglomerular e induce hiperfiltración nociva.
+- Los IECA inhiben la síntesis de angiotensina II, provocando **vasodilatación de la arteriola eferente**.
 
 **2. Beneficio Clínico:**
-- Disminuyen la presión hidrostática intraglomerular, frenando la fuga de proteínas (reducción de microalbuminuria) y retrasando la fibrosis renal.
+- Descenso de la presión capilar intraglomerular, disminución de la microalbuminuria y enlentecimiento del deterioro de la tasa de filtrado glomerular.
 
-**3. Precaución Inmediata:**
-- Puede presentarse un aumento fisiológico de creatinina de hasta un **20-30%** en las primeras 2 semanas; si supera el 30%, descartar estenosis bilateral de la arteria renal.
-
-¿Quieres que te prepare una pregunta para evaluar este tema?`;
+**3. Monitorización Obligatoria:**
+- Es esperable un ascenso de hasta un 25-30% en los niveles de creatinina sérica tras el inicio; incrementos superiores obligan a descartar estenosis de arteria renal bilateral.`;
     }
 
     if (qLower.includes('nac') || qLower.includes('neumon')) {
-      return `¡Hola! Aquí tienes la clave diferencial rápida para **Neumonía Adquirida en la Comunidad (NAC)**:
+      return `Diferenciación clínico-radiológica en **Neumonía Adquirida en la Comunidad (NAC)**:
 
-**Típica vs. Atípica:**
-1. **Clínica**: Típica (Neumococo) = Fiebre en picos, escalofríos intensos, tos productiva y dolor pleurítico. Atípica (Mycoplasma/Chlamydia) = Comienzo gradual, tos seca irritativa, síntomas extrapulmonares.
-2. **Radiografía**: Típica = Consolidación lobar focal con **broncograma aéreo**. Atípica = Infiltrado reticulonodular bilateral difuso.
-3. **Escala CURB-65**: Evalúa Confusión, Urea >19 mg/dL, Respiración ≥30, Presión sistólica <90 o diastólica ≤60, y Edad ≥65 para definir si requiere ingreso hospitalario.`;
+**Patrón Típico vs. Atípico:**
+1. **Típica (S. pneumoniae)**: Inicio hiperagudo, fiebre en picos, escalofríos, esputo purulento/herrumbroso y dolor pleurítico. En radiografía: consolidación lobar con **broncograma aéreo**.
+2. **Atípica (M. pneumoniae / C. pneumoniae)**: Inicio gradual, tos seca persistente, mialgias y disociación clínico-radiológica (infiltrados reticulares bilaterales con auscultación poco expresiva).
+3. **Escala CURB-65**: Evalúa Confusión, Urea >19 mg/dL, Frecuencia Respiratoria ≥30 rpm, Presión arterial sistólica <90 o diastólica ≤60 mmHg, y Edad ≥65 años.`;
     }
 
     if (qLower.includes('fibrilaci') || qLower.includes('antiarr')) {
-      return `En **Fibrilación Auricular (FA)**, la estrategia depende del perfil del paciente:
+      return `En el manejo de la **Fibrilación Auricular (FA)**:
 
-- **Control de Ritmo** (volver y mantener ritmo sinusal): Indicado en pacientes sintomáticos jóvenes, primer episodio de FA, o si la FA es desencadenante de insuficiencia cardíaca aguda. (Fármacos: Flecainida en corazón sano, Amiodarona si hay cardiopatía estructural).
-- **Control de Frecuencia** (frecuencia cardíaca < 100-110 lpm en reposo): Estrategia preferida en ancianos asintomáticos o con FA de larga data. (Fármacos: Betabloqueadores como Metoprolol, o Calcioantagonistas no dihidropiridínicos como Diltiazem).
-
-> **Recuerda**: La anticoagulación (según escala CHA₂DS₂-VASc) es independiente de si eliges control de ritmo o de frecuencia.`;
+- **Estrategia de Control de Ritmo**: Restauración y mantenimiento del ritmo sinusal. De elección en pacientes sintomáticos, episodios de inicio reciente (<48h) o insuficiencia cardíaca descompensada atribuible a la taquiarritmia.
+- **Estrategia de Control de Frecuencia**: Frecuencia ventricular objetivo < 100-110 lpm. Indicada en pacientes con síntomas leves o ancianos con aurículas muy dilatadas.
+- **Tromboprofilaxis**: Se rige por la escala CHA₂DS₂-VASc con independencia de la estrategia elegida (ritmo o frecuencia).`;
     }
 
-    return `Entendido. He analizado tu consulta médica: "${query}".
+    return `Consulta clínica registrada: "${query}".
 
-**Puntos Clínicos Clave:**
-1. **Abordaje Fisiopatológico**: En la evaluación de esta condición, el primer paso es jerarquizar los signos de alarma y constantes vitales (triage).
-2. **Diagnóstico Diferencial**: Descartar siempre las patologías tiempo-dependientes de mayor morbimortalidad antes de confirmar diagnósticos secundarios.
-3. **Pauta Terapéutica**: Priorizar medidas de soporte hemodinámico, estabilización de vía aérea y tratamiento farmacológico guiado por las guías de práctica clínica más recientes.
+**Criterios Académicos:**
+1. **Evaluación de Estabilidad**: Confirmar de forma inmediata el triángulo de evaluación clínica (vía aérea, respiración y perfusión tisular).
+2. **Prioridad Diagnóstica**: Jerarquizar diagnósticos diferenciales según gravedad y tiempo de evolución.
+3. **Manejo Farmacológico**: Indicar medidas basadas en evidencia de acuerdo a protocolos clínicos vigentes.
 
-*(Nota académica: Este tutor es una herramienta de simulación y estudio para estudiantes de medicina y no debe utilizarse en pacientes reales).*
-
-¿Deseas profundizar en la farmacología o en la presentación clínica de este tema?`;
+*(Aviso: Esta herramienta forma parte de un entorno simulado para estudiantes de medicina).*`;
   }
 }
 
-// Iniciar aplicación cuando el DOM esté listo
+// Inicializar
 document.addEventListener('DOMContentLoaded', () => {
   window.medpulseApp = new MedPulseApp();
 });

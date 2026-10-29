@@ -1,0 +1,279 @@
+/* ==========================================================================
+   MedPulse • Sistema de Estilos Profesionales de Grado Médico
+   Diseño sobrio, riguroso y optimizado para legibilidad clínica y móvil
+   ========================================================================== */
+
+:root {
+  /* Paleta Clínica Rigurosa */
+  --med-navy-950: #071320;
+  --med-navy-900: #0b1c30;
+  --med-navy-800: #132d4b;
+  --med-navy-700: #1b3d64;
+  --med-blue-600: #026aa2;
+  --med-blue-500: #0077b6;
+  --med-blue-100: #e0f2fe;
+  --med-blue-50:  #f0f9ff;
+
+  --med-slate-900: #0f172a;
+  --med-slate-800: #1e293b;
+  --med-slate-700: #334155;
+  --med-slate-600: #475569;
+  --med-slate-500: #64748b;
+  --med-slate-400: #94a3b8;
+  --med-slate-300: #cbd5e1;
+  --med-slate-200: #e2e8f0;
+  --med-slate-100: #f1f5f9;
+  --med-slate-50:  #f8fafc;
+
+  /* Estados Clínicos */
+  --med-emerald-700: #047857;
+  --med-emerald-600: #059669;
+  --med-emerald-100: #d1fae5;
+  --med-emerald-50:  #ecfdf5;
+
+  --med-crimson-700: #b91c1c;
+  --med-crimson-600: #dc2626;
+  --med-crimson-100: #fee2e2;
+  --med-crimson-50:  #fef2f2;
+
+  --med-amber-700: #b45309;
+  --med-amber-600: #d97706;
+  --med-amber-100: #fef3c7;
+  --med-amber-50:  #fffbeb;
+
+  /* Sombras Técnicas y Elevaciones */
+  --med-shadow-subtle: 0 1px 3px 0 rgba(11, 28, 48, 0.04), 0 1px 2px -1px rgba(11, 28, 48, 0.03);
+  --med-shadow-card:   0 4px 6px -1px rgba(11, 28, 48, 0.05), 0 2px 4px -2px rgba(11, 28, 48, 0.03);
+  --med-shadow-hover:  0 10px 15px -3px rgba(11, 28, 48, 0.08), 0 4px 6px -4px rgba(11, 28, 48, 0.04);
+  --med-shadow-modal:  0 20px 25px -5px rgba(11, 28, 48, 0.12), 0 8px 10px -6px rgba(11, 28, 48, 0.08);
+
+  /* Curvaturas de Precisión */
+  --med-radius-sm: 6px;
+  --med-radius-md: 10px;
+  --med-radius-lg: 14px;
+  --med-radius-xl: 18px;
+}
+
+/* Tipografía y Números Tabulares Clínicos */
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.011em;
+  color: var(--med-slate-900);
+  background-color: #f7f9fc;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar Sobria */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--med-slate-300);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--med-slate-400);
+}
+
+/* Tarjetas y Contenedores Clínicos */
+.clinical-card {
+  background: #ffffff;
+  border: 1px solid var(--med-slate-200);
+  border-radius: var(--med-radius-lg);
+  box-shadow: var(--med-shadow-subtle);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clinical-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--med-shadow-card);
+}
+
+/* Monitor de Signos Vitales de Grado Hospitalario */
+.vital-display-tile {
+  background: #ffffff;
+  border: 1px solid var(--med-slate-200);
+  border-radius: var(--med-radius-md);
+  padding: 0.75rem 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.vital-display-tile.vital-alert {
+  border-color: #fca5a5;
+  background: linear-gradient(180deg, #fffafa 0%, #fff5f5 100%);
+}
+
+.vital-display-tile.vital-normal {
+  border-color: var(--med-slate-200);
+  background: #ffffff;
+}
+
+.vital-value {
+  font-family: 'Inter', monospace, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+/* Opciones del Cuestionario Médico */
+.quiz-option-btn {
+  border: 1px solid var(--med-slate-200);
+  background: #ffffff;
+  border-radius: var(--med-radius-md);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  border-color: var(--med-blue-600);
+  background: var(--med-blue-50);
+  transform: translateY(-1px);
+  box-shadow: var(--med-shadow-subtle);
+}
+
+.quiz-option-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Estados tras responder */
+.quiz-option-btn.opt-correct {
+  border-color: var(--med-emerald-600) !important;
+  background-color: var(--med-emerald-50) !important;
+  color: var(--med-emerald-700) !important;
+}
+
+.quiz-option-btn.opt-incorrect {
+  border-color: var(--med-crimson-600) !important;
+  background-color: var(--med-crimson-50) !important;
+  color: var(--med-crimson-700) !important;
+}
+
+/* Barra Segmentada de Cuestionario */
+.progress-segment {
+  height: 6px;
+  border-radius: 4px;
+  background-color: var(--med-slate-200);
+  transition: all 0.25s ease;
+}
+
+.progress-segment.seg-active {
+  background-color: var(--med-blue-600);
+  box-shadow: 0 0 0 2px var(--med-blue-100);
+}
+
+.progress-segment.seg-correct {
+  background-color: var(--med-emerald-600);
+}
+
+.progress-segment.seg-incorrect {
+  background-color: var(--med-crimson-600);
+}
+
+/* Pestañas del Caso Clínico */
+.case-tab-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1rem;
+  border-bottom: 2px solid transparent;
+  color: var(--med-slate-600);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.case-tab-btn:hover {
+  color: var(--med-slate-900);
+}
+
+.case-tab-btn.tab-active {
+  color: var(--med-blue-600);
+  border-bottom-color: var(--med-blue-600);
+}
+
+/* Chat del Tutor Médico */
+.chat-bubble-user {
+  background-color: var(--med-navy-800);
+  color: #ffffff;
+  border-radius: 14px 14px 2px 14px;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  box-shadow: var(--med-shadow-subtle);
+}
+
+.chat-bubble-ai {
+  background-color: #ffffff;
+  border: 1px solid var(--med-slate-200);
+  color: var(--med-slate-800);
+  border-radius: 14px 14px 14px 2px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  box-shadow: var(--med-shadow-subtle);
+}
+
+.chat-bubble-ai strong {
+  color: var(--med-navy-900);
+  font-weight: 700;
+}
+
+.chat-bubble-ai blockquote {
+  border-left: 3px solid var(--med-blue-600);
+  background-color: var(--med-blue-50);
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 0 var(--med-radius-sm) var(--med-radius-sm) 0;
+  font-style: italic;
+  color: var(--med-navy-800);
+}
+
+/* Barra Móvil Inferior (Bottom Bar) */
+.mobile-nav-bar {
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--med-slate-200);
+  box-shadow: 0 -4px 12px rgba(11, 28, 48, 0.04);
+}
+
+.mobile-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0;
+  color: var(--med-slate-500);
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.mobile-nav-btn.active {
+  color: var(--med-blue-600);
+}
+
+.mobile-nav-btn.active .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 500;
+  transform: translateY(-1px);
+}
+
+/* Indicador de Latido / Online */
+@keyframes heart-pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.pulse-indicator {
+  animation: heart-pulse 2s infinite ease-in-out;
+}
